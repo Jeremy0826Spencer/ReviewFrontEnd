@@ -1,0 +1,7 @@
+<!--form-control.component.html-->
+<label for="city">Name: </label>
+<input id="city" type="text" [formControl]="city">
+<label for="location_name">Location Name:</label>
+<input id="location_name" type="text" [formControl]="location_name" [formControl]="location_name">
+<app-button text="Get All Locations" (buttonClicked)="onGetAllLocations()"></app-button>
+

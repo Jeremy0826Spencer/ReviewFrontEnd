@@ -1,0 +1,21 @@
+<!--search-locations.component.html-->
+<div class="container">
+    <app-header headerText="Search Locations"></app-header>
+    <app-search-form (getAllLocations)="onGetAllLocations()"></app-search-form>
+    <table>
+        <tr>
+            <th>Location ID</th>
+            <th>Location Name</th>
+            <th>City</th>
+            <th>Zip</th>
+            <th>State</th>
+        </tr>
+        <tr *ngFor="let loc of lstLocations">
+            <td>{{ loc.locationId }}</td>
+            <td>{{ loc.locationName }}</td>
+            <td>{{ loc.city }}</td>
+            <td>{{ loc.zip }}</td>
+            <td>{{ loc.state }}</td>
+        </tr>
+    </table>
+</div>

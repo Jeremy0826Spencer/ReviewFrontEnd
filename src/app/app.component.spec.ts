@@ -1,10 +1,12 @@
+//app.component.spec.ts
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      declarations: [AppComponent], // Use declarations here instead of imports
+      // imports: [ /* other modules if needed */ ],
     }).compileComponents();
   });
 
@@ -27,3 +29,4 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('h1')?.textContent).toContain('Hello, Front-End');
   });
 });
+

@@ -1,0 +1,28 @@
+$btn-bg-color: #007bff; // Primary button color
+$btn-text-color: white; // Text color for the button
+$btn-padding: 10px 15px; // Padding inside the button
+$btn-border-radius: 5px; // Border radius for rounded corners
+$btn-hover-bg-color: darken($btn-bg-color, 10%); // Darker background on hover
+
+.btn {
+  background-color: $btn-bg-color;
+  color: $btn-text-color;
+  padding: $btn-padding;
+  border: none;
+  border-radius: $btn-border-radius;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: $btn-hover-bg-color;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
