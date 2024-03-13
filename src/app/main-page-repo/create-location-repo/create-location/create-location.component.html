@@ -1,5 +1,26 @@
-<!--create location component.html-->
 <div class="container">
     <app-header headerText="Create Location"></app-header>
-    <app-create-location-form (formSubmit)="onCreateLocation($event)"></app-create-location-form>
+    <form [formGroup]="locationForm" (ngSubmit)="onCreateLocation()">
+        <div>
+            <label for="locationName">Location Name</label>
+            <input id="locationName" type="text" formControlName="locationName" placeholder="Enter location name">
+        </div>
+        <div>
+            <label for="street">Street</label>
+            <input id="street" type="text" formControlName="street" placeholder="Enter street">
+        </div>
+        <div>
+            <label for="city">City</label>
+            <input id="city" type="text" formControlName="city" placeholder="Enter city">
+        </div>
+        <div>
+            <label for="zip">ZIP Code</label>
+            <input id="zip" type="text" formControlName="zip" placeholder="Enter ZIP code">
+        </div>
+        <div>
+            <label for="state">State</label>
+            <input id="state" type="text" formControlName="state" placeholder="Enter state">
+        </div>
+        <button type="submit">Submit Location</button>
+    </form>
 </div>

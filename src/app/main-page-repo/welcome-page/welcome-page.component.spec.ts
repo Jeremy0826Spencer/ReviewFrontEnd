@@ -1,19 +1,18 @@
-//form.control.spec.ts
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormControlComponent } from './form-control.component';
+import { WelcomePageComponent } from './welcome-page.component';
 
-describe('FormControlComponent', () => {
-  let component: FormControlComponent;
-  let fixture: ComponentFixture<FormControlComponent>;
+describe('WelcomePageComponent', () => {
+  let component: WelcomePageComponent;
+  let fixture: ComponentFixture<WelcomePageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormControlComponent]
+      imports: [WelcomePageComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(FormControlComponent);
+    fixture = TestBed.createComponent(WelcomePageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

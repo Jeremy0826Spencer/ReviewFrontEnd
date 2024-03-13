@@ -1,26 +1,17 @@
-//create-location.component.ts
 import { Component, EventEmitter, Output } from '@angular/core';
-import { ButtonComponent } from '../../../components/button/button.component';
+import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Location as MyLocation } from '../../../models/location.model';
+import { LocationService } from '../../../services/location.service';
 import { HeaderComponent } from '../../../components/header/header.component';
-import { CreateLocationFormComponent } from '../create-location-form/create-location-form.component';
-import { ApiService } from '../../../services/api.service';
-import { Location as MyLocation } from '../../../Classes/Location';
-import { FormGroup, FormControl } from '@angular/forms';
-//import { Location as ExternalLocation } from 'your-external-library'; // If you have an external 'Location' type, provide its path or library name
 
 @Component({
   selector: 'app-create-location',
-  standalone: true,
-  imports: [
-    ButtonComponent,
-    HeaderComponent,
-    CreateLocationFormComponent,
-  ],
   templateUrl: './create-location.component.html',
-  styleUrls: ['./create-location.component.scss'] 
+  standalone: true,
+  imports: [HeaderComponent, ReactiveFormsModule],
+  styleUrls: ['./create-location.component.scss']
 })
 export class CreateLocationComponent {
-
   @Output() locationAdded = new EventEmitter<MyLocation>();
 
   locationForm = new FormGroup({
@@ -31,15 +22,30 @@ export class CreateLocationComponent {
     state: new FormControl('')
   });
 
-  constructor(private apiService: ApiService) {}
+  constructor(private locationService: LocationService) {}
 
-  onCreateLocation(formData: MyLocation) {
-    this.apiService.addLocation(formData).subscribe({
-      next: (response) => {
-        console.log('Location added:', response);
-        this.locationAdded.emit(response); // Emit the response
-      },
-      error: (error) => console.error('Error adding location:', error)
-    });
+  onCreateLocation() {
+    if (this.locationForm.valid) {
+      this.locationService.addLocation(this.locationForm.value as MyLocation).subscribe({
+        next: (response: MyLocation) => {
+          console.log('Location added:', response);
+          this.locationAdded.emit(response);
+          this.locationForm.reset(); // Optionally reset the form after successful submission
+          // Consider showing a success message to the user
+        },
+        error: (error: any) => {
+          console.error('Error adding location:', error);
+          // Consider showing an error message to the user
+        }
+      });
+    } else {
+      console.error('Form is invalid');
+      // Highlight the form fields with validation errors
+      Object.keys(this.locationForm.controls).forEach(field => {
+        const control = this.locationForm.get(field);
+        control?.markAsTouched(); // This makes error messages visible if using *ngIf="control.touched"
+      });
+    }
   }
+  
 }

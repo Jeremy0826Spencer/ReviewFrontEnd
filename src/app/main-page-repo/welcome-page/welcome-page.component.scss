@@ -1,0 +1,25 @@
+/* src/app/homepage/homepage.component.css */
+.homepage {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .homepage h1 {
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .homepage p {
+    color: #666;
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 20px auto;
+  }
+  
+  .homepage img {
+    max-width: 90%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }

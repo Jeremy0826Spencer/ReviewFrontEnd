@@ -1,21 +1,45 @@
-<!--search-locations.component.html-->
 <div class="container">
     <app-header headerText="Search Locations"></app-header>
-    <app-search-form (getAllLocations)="onGetAllLocations()"></app-search-form>
-    <table>
-        <tr>
-            <th>Location ID</th>
-            <th>Location Name</th>
-            <th>City</th>
-            <th>Zip</th>
-            <th>State</th>
-        </tr>
-        <tr *ngFor="let loc of lstLocations">
-            <td>{{ loc.locationId }}</td>
-            <td>{{ loc.locationName }}</td>
-            <td>{{ loc.city }}</td>
-            <td>{{ loc.zip }}</td>
-            <td>{{ loc.state }}</td>
-        </tr>
-    </table>
+    <div class="content-wrapper">
+        <!-- Search Form -->
+        <div class="search-section">
+            <form [formGroup]="searchForm">
+                <input type="text" formControlName="city" placeholder="City">
+                <input type="text" formControlName="locationName" placeholder="Location Name">
+                <button (click)="onSearchLocations()">Search</button>
+            </form>
+        
+            <button (click)="onGetAllLocations()">Show All Locations</button>
+        
+            <table>
+                <tr>
+                    <th>Location ID</th>
+                    <th>Location Name</th>
+                    <th>Street</th>
+                    <th>City</th>
+                    <th>Zip</th>
+                    <th>State</th>
+                    <th>Reviews</th>
+                </tr>
+                <tr *ngFor="let loc of lstLocations">
+                    <td>{{ loc.locationId }}</td>
+                    <td>{{ loc.locationName }}</td>
+                    <td>{{ loc.street }}</td>
+                    <td>{{ loc.city }}</td>
+                    <td>{{ loc.zip }}</td>
+                    <td>{{ loc.state }}</td>
+                    <td><a [routerLink]="['/location-details', loc.locationId]">Find Reviews</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Most Reviewed Location Display -->
+        <div class="most-reviewed">
+            <h3>Most Reviewed Location in {{searchedCity}}</h3>
+            <p *ngIf="mostReviewedLocation">Name: {{mostReviewedLocation.locationName}}</p>
+            <!-- Display more details about the most reviewed location -->
+        </div>
+    </div>
 </div>
+
+

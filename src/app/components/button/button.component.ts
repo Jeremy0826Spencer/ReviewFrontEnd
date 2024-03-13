@@ -1,6 +1,5 @@
 //button.component.ts
 import { Component , OnInit, Input, EventEmitter, Output} from '@angular/core';
-import { FormControlComponent } from '../../main-page-repo/search-locations-repo/search-locations-form/form-control.component';
 
 @Component({
   selector: 'app-button',
